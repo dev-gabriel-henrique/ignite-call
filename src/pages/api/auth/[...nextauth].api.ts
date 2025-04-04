@@ -45,7 +45,7 @@ export function buildNextAuthOptions(
       async session({ session, user }) {
         return {
           ...session,
-          user
+          user,
         };
       },
 
