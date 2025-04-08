@@ -3,6 +3,8 @@ import { Container, UserHeader } from "./styles";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { prisma } from "@/lib/prisma";
 import { CalendarStep } from "./ScheduleForm/CalendarStep";
+import { ConfirmStep } from "./ScheduleForm/ConfirmStep";
+import { ScheduleForm } from "./ScheduleForm";
 
 interface ScheduleProps {
   user: {
@@ -23,7 +25,7 @@ export default function Schedule({
         <Text>{bio}</Text>
       </UserHeader>
 
-      <CalendarStep />
+      <ScheduleForm />
     </Container>
   );
 }
