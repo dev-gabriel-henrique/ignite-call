@@ -9,7 +9,7 @@ export const Container = styled(Box, {
   variants: {
     isTimePickerOpen: {
       true: {
-        gridTemplateColumns: "1fr 280px",
+        gridTemplateColumns: "1fr 320px",
 
         "@media(max-width: 900px)": {
           gridTemplateColumns: "1fr",
