@@ -41,22 +41,19 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
   const { data: availability } = useQuery<Availability>({
     queryKey: ["availability", selectedDateWithoutTime],
     queryFn: async () => {
-      const { data } = await api.get(
-        `/users/${username}/availability?date=${selectedDateWithoutTime}`
-      );
+      const { data } = await api.get(`/users/${username}/availability`, {
+        params: {
+          date: selectedDateWithoutTime,
+        },
+      });
 
       return data;
     },
   });
 
-  function handleSelectTime(hour: number) {
-    const dateWithTime = dayjs(selectedDate)
-      .set("hour", hour)
-      .startOf("hour")
-      .toDate();
-
-    onSelectDateTime(dateWithTime);
-  }
+  const unavailableTimes = availability?.availableTimes.map((availableTime) => {
+    return dayjs(availableTime).get("hour");
+  });
 
   return (
     <Container isTimePickerOpen={isDateSelected}>
@@ -73,8 +70,11 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
               return (
                 <TimePickerItem
                   key={hour}
-                  onClick={() => handleSelectTime(hour)}
-                  disabled={!availability.availableTimes.includes(hour)}
+                  onClick={() => false}
+                  disabled={
+                    unavailableTimes?.includes(hour) ||
+                    dayjs(selectedDate).set("hour", hour).isBefore(new Date())
+                  }
                 >
                   {String(hour).padStart(2, "0")}:00h
                 </TimePickerItem>
