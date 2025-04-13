@@ -1,4 +1,3 @@
-// import dayjs from 'dayjs'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { prisma } from '../../../../lib/prisma'
 
@@ -38,7 +37,8 @@ export default async function handler(
 
   const blockedWeekDays = [0, 1, 2, 3, 4, 5, 6].filter((weekDay) => {
     return !availableWeekDays.some(
-      (availableWeekDay) => availableWeekDay.week_day === weekDay,
+      (availableWeekDay: { week_day: number }) =>
+        availableWeekDay.week_day === weekDay,
     )
   })
 
@@ -61,7 +61,7 @@ export default async function handler(
     ((UTI.time_end_in_minutes - UTI.time_start_in_minutes) / 60)
 
   HAVING
-    COUNT(S.date) >= ((UTI.time_end_in_minutes - UTI.time_start_in_minutes) / 60);
+    COUNT(S.date) >= ((UTI.time_end_in_minutes - UTI.time_start_in_minutes) / 60)
 `
 
   const blockedDates = blockedDatesRaw.map((item) => Number(item.date))

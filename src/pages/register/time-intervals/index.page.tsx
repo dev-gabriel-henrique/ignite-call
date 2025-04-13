@@ -74,7 +74,7 @@ export default function TimeIntervals() {
     watch,
     formState: { errors, isSubmitting },
   } = useForm<TimeIntervalsFormInput>({
-    resolver: zodResolver<any>(timeIntervalsFormSchema),
+    resolver: zodResolver(timeIntervalsFormSchema),
     defaultValues: {
       intervals: [
         { weekDay: 0, enabled: false, startTime: '08:00', endTime: '18:00' },
@@ -99,7 +99,7 @@ export default function TimeIntervals() {
 
   const intervals = watch('intervals')
 
-  const handleSetTimeInterval = async (data: any) => {
+  const handleSetTimeInterval = async (data: unknown) => {
     const { intervals } = data as TimeIntervalsFormOutput
 
     await api.post('/users/time-intervals', {
