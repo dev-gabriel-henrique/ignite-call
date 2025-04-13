@@ -42,8 +42,6 @@ export default async function handler(
     )
   })
 
-  const padMonth = String(month).padStart(2, '0')
-
   const blockedDatesRaw: Array<{ date: string }> = await prisma.$queryRaw`
   SELECT
     EXTRACT(DAY FROM S.DATE) AS date,

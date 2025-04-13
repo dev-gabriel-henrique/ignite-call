@@ -28,13 +28,12 @@ interface BlockedDates {
 }
 
 interface CalendarProps {
-  selectedDate: Date | null
   onDateSelected: (date: Date) => void
 }
 
 type CalendarWeeksProps = CalendarWeekProps[]
 
-export function Calendar({ onDateSelected, selectedDate }: CalendarProps) {
+export function Calendar({ onDateSelected }: CalendarProps) {
   const router = useRouter()
 
   const [currentDate, setCurrentDate] = useState<dayjs.Dayjs>(() => {

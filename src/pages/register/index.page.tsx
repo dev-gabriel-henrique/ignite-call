@@ -103,7 +103,7 @@ export default function Register() {
             {errors.name && <FormError>{errors.name.message}</FormError>}
           </label>
 
-          <Button type="submit">
+          <Button type="submit" disabled={isSubmitting}>
             Próximo passo <ArrowRight />
           </Button>
         </Form>

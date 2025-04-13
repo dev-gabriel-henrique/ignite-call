@@ -78,7 +78,7 @@ export default function UpdateProfile() {
             </FormAnnotation>
           </label>
 
-          <Button type="submit">Finalizar</Button>
+          <Button type="submit" disabled={isSubmitting}>Finalizar</Button>
         </ProfileBox>
       </Container>
     </>
