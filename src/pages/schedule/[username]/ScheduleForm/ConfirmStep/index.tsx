@@ -4,6 +4,9 @@ import { CalendarBlank, Clock } from "phosphor-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import dayjs from "dayjs";
+import { api } from "@/lib/axios";
+import { useRouter } from "next/router";
 
 const confirmFormSchema = z.object({
   name: z
@@ -15,7 +18,17 @@ const confirmFormSchema = z.object({
 
 type ConfirmFormData = z.infer<typeof confirmFormSchema>;
 
-export function ConfirmStep() {
+interface ConfirmStepProps {
+  schedulingDate: Date;
+  onCancelConfirmation: () => void;
+}
+
+export function ConfirmStep({
+  schedulingDate,
+  onCancelConfirmation,
+}: ConfirmStepProps) {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -24,18 +37,36 @@ export function ConfirmStep() {
     resolver: zodResolver(confirmFormSchema),
   });
 
-  const handleConfirmScheduling = () => {};
+  const username = String(router.query.username);
+
+  const describedDate = dayjs(schedulingDate).format("DD[ de ]MMMM[ de ]YYYY");
+  const describedTime = dayjs(schedulingDate).format("HH:mm[h]");
+
+  const handleConfirmScheduling = async ({
+    name,
+    email,
+    observations,
+  }: ConfirmFormData) => {
+    await api.post(`/users/${username}/schedule`, {
+      name,
+      email,
+      observations,
+      date: schedulingDate,
+    });
+
+    onCancelConfirmation();
+  };
 
   return (
     <ConfirmForm as="form" onSubmit={handleSubmit(handleConfirmScheduling)}>
       <FormHeader>
         <Text>
           <CalendarBlank />
-          22 de setembro de 2022
+          {describedDate}
         </Text>
         <Text>
           <Clock />
-          18:00h
+          {describedTime}
         </Text>
       </FormHeader>
 
@@ -67,15 +98,19 @@ export function ConfirmStep() {
       </label>
 
       <label>
-        <Text size="sm">Endereço de e-mail</Text>
+        <Text size="sm">Observações</Text>
         <TextArea {...register("observations")} />
       </label>
 
       <FormActions>
-        <Button type="button" variant="tertiary">
+        <Button type="button" variant="tertiary" onClick={onCancelConfirmation}>
           Cancelar
         </Button>
-        <Button disabled={isSubmitting} type="submit">
+        <Button
+          disabled={isSubmitting}
+          type="submit"
+          onClick={() => handleSubmit(handleConfirmScheduling)}
+        >
           Confirmar
         </Button>
       </FormActions>

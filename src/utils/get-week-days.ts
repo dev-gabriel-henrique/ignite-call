@@ -1,5 +1,5 @@
 interface GetWeekDaysParams {
-  short?: boolean;
+  short?: boolean
 }
 
 export function getWeekDays({ short = false }: GetWeekDaysParams = {}) {
@@ -16,5 +16,5 @@ export function getWeekDays({ short = false }: GetWeekDaysParams = {}) {
           .toUpperCase()
           .concat(weekDay.substring(1));
       }
-    });
+    })
 }

@@ -55,6 +55,15 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
     return dayjs(availableTime).get("hour");
   });
 
+  const handleSelectTime = (hour: number) => {
+    const dateWithTime = dayjs(selectedDate)
+      .set("hour", hour)
+      .startOf("hour")
+      .toDate();
+
+    onSelectDateTime(dateWithTime);
+  };
+
   return (
     <Container isTimePickerOpen={isDateSelected}>
       <Calendar selectedDate={selectedDate} onDateSelected={setSelectedDate} />
@@ -70,11 +79,8 @@ export function CalendarStep({ onSelectDateTime }: CalendarStepProps) {
               return (
                 <TimePickerItem
                   key={hour}
-                  onClick={() => false}
-                  disabled={
-                    unavailableTimes?.includes(hour) ||
-                    dayjs(selectedDate).set("hour", hour).isBefore(new Date())
-                  }
+                  onClick={() => handleSelectTime(hour)}
+                  disabled={!availability.availableTimes.includes(hour)}
                 >
                   {String(hour).padStart(2, "0")}:00h
                 </TimePickerItem>

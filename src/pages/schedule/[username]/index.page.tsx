@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { CalendarStep } from "./ScheduleForm/CalendarStep";
 import { ConfirmStep } from "./ScheduleForm/ConfirmStep";
 import { ScheduleForm } from "./ScheduleForm";
+import { NextSeo } from "next-seo";
 
 interface ScheduleProps {
   user: {
@@ -18,15 +19,18 @@ export default function Schedule({
   user: { avatarUrl, bio, name },
 }: ScheduleProps) {
   return (
-    <Container>
-      <UserHeader>
-        <Avatar src={avatarUrl} />
-        <Heading>{name}</Heading>
-        <Text>{bio}</Text>
-      </UserHeader>
+    <>
+    <NextSeo title={`Agendar com ${name} | Ignite Call`} />
+      <Container>
+        <UserHeader>
+          <Avatar src={avatarUrl} />
+          <Heading>{name}</Heading>
+          <Text>{bio}</Text>
+        </UserHeader>
 
-      <ScheduleForm />
-    </Container>
+        <ScheduleForm />
+      </Container>
+    </>
   );
 }
 
