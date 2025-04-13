@@ -1,18 +1,18 @@
-import { Avatar, Heading, Text } from "@ignite-ui/react";
-import { Container, UserHeader } from "./styles";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { prisma } from "@/lib/prisma";
-import { CalendarStep } from "./ScheduleForm/CalendarStep";
-import { ConfirmStep } from "./ScheduleForm/ConfirmStep";
-import { ScheduleForm } from "./ScheduleForm";
-import { NextSeo } from "next-seo";
+import { Avatar, Heading, Text } from '@ignite-ui/react'
+import { Container, UserHeader } from './styles'
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { prisma } from '@/lib/prisma'
+import { CalendarStep } from './ScheduleForm/CalendarStep'
+import { ConfirmStep } from './ScheduleForm/ConfirmStep'
+import { ScheduleForm } from './ScheduleForm'
+import { NextSeo } from 'next-seo'
 
 interface ScheduleProps {
   user: {
-    name: string;
-    bio: string;
-    avatarUrl: string;
-  };
+    name: string
+    bio: string
+    avatarUrl: string
+  }
 }
 
 export default function Schedule({
@@ -20,7 +20,7 @@ export default function Schedule({
 }: ScheduleProps) {
   return (
     <>
-    <NextSeo title={`Agendar com ${name} | Ignite Call`} />
+      <NextSeo title={`Agendar com ${name} | Ignite Call`} />
       <Container>
         <UserHeader>
           <Avatar src={avatarUrl} />
@@ -31,29 +31,29 @@ export default function Schedule({
         <ScheduleForm />
       </Container>
     </>
-  );
+  )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: "blocking",
-  };
-};
+    fallback: 'blocking',
+  }
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const username = String(params?.username);
+  const username = String(params?.username)
 
   const user = await prisma.user.findUnique({
     where: {
       username,
     },
-  });
+  })
 
   if (!user) {
     return {
       notFound: true,
-    };
+    }
   }
 
   return {
@@ -65,5 +65,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       },
     },
     revalidate: 60 * 60 * 24, // 1 day
-  };
-};
+  }
+}
