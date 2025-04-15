@@ -91,15 +91,25 @@ export default function UpdateProfile() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const session = await getServerSession(
-    req,
-    res,
-    buildNextAuthOptions(req, res),
-  )
+  try {
+    const session = await getServerSession(
+      req,
+      res,
+      buildNextAuthOptions(req, res),
+    )
 
-  return {
-    props: {
-      session,
-    },
+    return {
+      props: {
+        session,
+      },
+    }
+  } catch (error) {
+    console.error('Erro no getServerSideProps:', error)
+
+    return {
+      props: {
+        session: null,
+      },
+    }
   }
 }
