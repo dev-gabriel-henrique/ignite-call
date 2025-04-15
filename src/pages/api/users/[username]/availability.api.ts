@@ -45,10 +45,13 @@ export default async function handler(
     return res.json({ possibleTimes: [], availableTimes: [] })
   }
 
-  const { time_start_in_minutes, time_end_in_minutes } = userAvailability
+  const {
+    time_start_in_minutes: timeStartInMinutes,
+    time_end_in_minutes: timeEndInMinutes,
+  } = userAvailability
 
-  const startHour = time_start_in_minutes / 60
-  const endHour = time_end_in_minutes / 60
+  const startHour = timeStartInMinutes / 60
+  const endHour = timeEndInMinutes / 60
 
   const possibleTimes = Array.from({ length: endHour - startHour }).map(
     (_, i) => {

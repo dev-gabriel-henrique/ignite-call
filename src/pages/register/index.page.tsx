@@ -1,27 +1,27 @@
-import { Button, Heading, MultiStep, Text, TextInput } from "@ignite-ui/react";
-import { Container, Form, FormError, Header } from "./styles";
-import { ArrowRight } from "phosphor-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { api } from "@/lib/axios";
-import { AxiosError } from "axios";
-import { NextSeo } from "next-seo";
+import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
+import { Container, Form, FormError, Header } from './styles'
+import { ArrowRight } from 'phosphor-react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { api } from '@/lib/axios'
+import { AxiosError } from 'axios'
+import { NextSeo } from 'next-seo'
 
 const registerFormSchema = z.object({
   username: z
     .string()
-    .min(3, { message: "Usuário deve ter ao menos 3 letras" })
+    .min(3, { message: 'Usuário deve ter ao menos 3 letras' })
     .regex(/^([a-z\\-]+)$/i, {
-      message: "Usuario deve ter apenas letras e ifens",
+      message: 'Usuario deve ter apenas letras e ifens',
     })
     .transform((username) => username.toLowerCase()),
-  name: z.string().min(3, "O nome precisa ter pelo menos 3 letras."),
-});
+  name: z.string().min(3, 'O nome precisa ter pelo menos 3 letras.'),
+})
 
-type RegisterFormData = z.infer<typeof registerFormSchema>;
+type RegisterFormData = z.infer<typeof registerFormSchema>
 
 export default function Register() {
   const {
@@ -31,38 +31,38 @@ export default function Register() {
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerFormSchema),
-  });
+  })
 
-  const router = useRouter();
+  const router = useRouter()
 
   useEffect(() => {
     if (router.query?.username) {
-      setValue("username", String(router.query.username));
+      setValue('username', String(router.query.username))
     }
-  }, [router.query?.username, setValue]);
+  }, [router.query?.username, setValue])
 
   const handleRegister = async (data: RegisterFormData) => {
     try {
-      await api.post("/users", {
+      await api.post('/users', {
         name: data.name,
         username: data.username,
-      });
+      })
 
-      await router.push("/register/connect-calendar");
+      await router.push('/register/connect-calendar')
     } catch (error) {
       if (error instanceof AxiosError && error?.response?.data?.message) {
-        alert(error.response.data.message);
-        return;
+        alert(error.response.data.message)
+        return
       }
 
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <>
       <NextSeo title="Crie uma conta" />
-      
+
       <Container>
         <Header>
           <Heading as="strong">Bem vindo ao Ignite Call!</Heading>
@@ -83,7 +83,7 @@ export default function Register() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
               crossOrigin={undefined}
-              {...register("username")}
+              {...register('username')}
             />
 
             {errors.username && (
@@ -98,16 +98,16 @@ export default function Register() {
               onPointerEnterCapture={undefined}
               onPointerLeaveCapture={undefined}
               crossOrigin={undefined}
-              {...register("name")}
+              {...register('name')}
             />
             {errors.name && <FormError>{errors.name.message}</FormError>}
           </label>
 
-          <Button type="submit">
+          <Button type="submit" disabled={isSubmitting}>
             Próximo passo <ArrowRight />
           </Button>
         </Form>
       </Container>
     </>
-  );
+  )
 }
