@@ -42,7 +42,7 @@ export default function UpdateProfile() {
 
   const handleUpdateProfile = async (data: UpdateProfileData) => {
     await api.put('/users/profile', {
-      bio: data.bio,
+      bio: data?.bio,
     })
 
     await router.push(`/schedule/${session.data?.user.username}`)
