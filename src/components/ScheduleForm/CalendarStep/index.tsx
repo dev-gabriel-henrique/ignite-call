@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { Calendar } from '../../../../../components/Calendar'
-import { api } from '../../../../../lib/axios'
+import { Calendar } from '../../Calendar'
+import { api } from '../../../lib/axios'
 import {
   Container,
   TimePicker,

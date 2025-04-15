@@ -6,7 +6,7 @@ import {
   Text,
   TextInput,
 } from '@ignite-ui/react'
-import { Container, Header } from '../styles'
+import { Container, Header } from '../../../styles/pageStyles/register'
 import {
   FormError,
   IntervalBox,
@@ -14,7 +14,7 @@ import {
   IntervalInputs,
   IntervalItem,
   IntervalsContainer,
-} from './styles'
+} from '../../../styles/pageStyles/timeIntervals'
 import { ArrowRight } from 'phosphor-react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'

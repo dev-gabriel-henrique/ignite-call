@@ -1,9 +1,9 @@
 import { Heading, Text } from '@ignite-ui/react'
-import { Container, Hero, Preview } from './styles'
+import { Container, Hero, Preview } from '../../styles/pageStyles/home'
 
 import previewImage from '@/assets/appPreview.png'
 import Image from 'next/image'
-import { ClaimUsernameForm } from './components/ClaimUsernameForm'
+import { ClaimUsernameForm } from '../../components/ClaimUsernameForm'
 import { NextSeo } from 'next-seo'
 
 export default function Home() {

@@ -1,7 +1,11 @@
 import { Button, Heading, MultiStep, Text } from '@ignite-ui/react'
-import { Container, Header } from '../styles'
+import { Container, Header } from '../../../styles/pageStyles/register'
 import { ArrowRight, Check } from 'phosphor-react'
-import { AuthError, ConnectBox, ConnectItem } from './styles'
+import {
+  AuthError,
+  ConnectBox,
+  ConnectItem,
+} from '../../../styles/pageStyles/connectCalendar'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
@@ -11,7 +15,7 @@ export default function ConnectCalendar() {
   const router = useRouter()
 
   const hasAuthError = !!router.query.error
-  const isSignedIn = session.status === 'authenticated'
+  const isSignedIn = session?.status === 'authenticated'
 
   const handleConnectCalendar = async () => {
     await signIn('google')

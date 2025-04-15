@@ -9,8 +9,11 @@ import {
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { Container, Header } from '../styles'
-import { FormAnnotation, ProfileBox } from './styles'
+import { Container, Header } from '../../../styles/pageStyles/register'
+import {
+  FormAnnotation,
+  ProfileBox,
+} from '../../../styles/pageStyles/updateProfile'
 import { useSession } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth'
