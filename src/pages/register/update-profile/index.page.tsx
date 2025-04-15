@@ -10,10 +10,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Container, Header } from '../styles'
-import {
-  FormAnnotation,
-  ProfileBox,
-} from './styles'
+import { FormAnnotation, ProfileBox } from './styles'
 import { useSession } from 'next-auth/react'
 import { GetServerSideProps } from 'next'
 import { getServerSession } from 'next-auth'

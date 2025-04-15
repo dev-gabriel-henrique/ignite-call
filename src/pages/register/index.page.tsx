@@ -1,10 +1,5 @@
 import { Button, Heading, MultiStep, Text, TextInput } from '@ignite-ui/react'
-import {
-  Container,
-  Form,
-  FormError,
-  Header,
-} from './styles'
+import { Container, Form, FormError, Header } from './styles'
 import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'

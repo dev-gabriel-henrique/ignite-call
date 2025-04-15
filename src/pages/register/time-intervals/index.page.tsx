@@ -15,7 +15,14 @@ import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minut
 import { api } from '@/lib/axios'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
-import { FormError, IntervalBox, IntervalDay, IntervalInputs, IntervalItem, IntervalsContainer } from './styles'
+import {
+  FormError,
+  IntervalBox,
+  IntervalDay,
+  IntervalInputs,
+  IntervalItem,
+  IntervalsContainer,
+} from './styles'
 import { Container, Header } from '../styles'
 
 const timeIntervalsFormSchema = z.object({
