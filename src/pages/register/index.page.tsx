@@ -4,7 +4,7 @@ import {
   Form,
   FormError,
   Header,
-} from '../../styles/pageStyles/register'
+} from './styles'
 import { ArrowRight } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'

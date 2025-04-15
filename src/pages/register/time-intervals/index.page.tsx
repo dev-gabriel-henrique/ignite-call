@@ -6,15 +6,6 @@ import {
   Text,
   TextInput,
 } from '@ignite-ui/react'
-import { Container, Header } from '../../../styles/pageStyles/register'
-import {
-  FormError,
-  IntervalBox,
-  IntervalDay,
-  IntervalInputs,
-  IntervalItem,
-  IntervalsContainer,
-} from '../../../styles/pageStyles/timeIntervals'
 import { ArrowRight } from 'phosphor-react'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -24,6 +15,8 @@ import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minut
 import { api } from '@/lib/axios'
 import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
+import { FormError, IntervalBox, IntervalDay, IntervalInputs, IntervalItem, IntervalsContainer } from './styles'
+import { Container, Header } from '../styles'
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
