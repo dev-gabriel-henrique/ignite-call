@@ -1,9 +1,9 @@
 # Ignite Call
 
-## 📌 Descrição
-Este projeto é um agendador de reuniões com integração ao Google Calendar, desenvolvido durante aulas na Rocketseat. Ele tem cunho educativo, onde é explorado as tecnologias do Next Js e também para ter conhecimentos sobre integrações com a Google services.
+## 📌 Description
+Ignite Call is a meeting scheduler with Google Calendar integration, developed during classes at Rocketseat. This project is educational in nature, aiming to explore technologies such as Next.js and gain experience with Google Services integration.
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Technologies Used
 - [x] Next.js
 - [x] @ignite-ui
 - [x] Google Services
@@ -11,43 +11,44 @@ Este projeto é um agendador de reuniões com integração ao Google Calendar, d
 
 ## ⚙️ Instalação
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/dev-gabriel-henrique/ignite-call
 
-# Acesse o diretório do projeto
+# Navigate into the project directory
 cd ignite-call
 
-# Instale as dependências
-npm install # ou yarn install
+# Install dependencies
+npm install # or yarn install
 ```
 
-## ▶️ Execução
+▶️ Running the Project
 ```bash
-# Iniciar o projeto
-npm run dev # ou yarn-dev
+# Start the development server
+npm run dev # or yarn dev
+
 ```
 
-## 🛠 Configuração
+🛠 Configuration
 Crie um arquivo `.env` na raiz do projeto e defina as variáveis necessárias:
 ```env
-// App
-DATABASE_URL="Sua variável data base local aqui"
-DATABASE_DIRECT_URL="Sua variável data base local aqui"
+DATABASE_URL="Your local database connection string"
+DATABASE_DIRECT_URL="Your local direct database connection string"
 
+GOOGLE_CLIENT_ID=Your Google Client ID
+GOOGLE_CLIENT_SECRET=Your Google Client Secret
+NEXT_AUTH_SECRET=Your NextAuth secret
 
-GOOGLE_CLIENT_ID=Sua variavel google client id aqui
-GOOGLE_CLIENT_SECRET=Sua variavel google client Secret aqui
-NEXT_AUTH_SECRET=Sua variavel next auth secret aqui
 ```
 
 ## 📝 Estrutura do Projeto
 ```plaintext
 /src
-  |-- @types/
-   |-- assets/
-   |-- components/
-   |-- lib/
-   |-- pages/
-   |-- styles/
-   |-- utils/
+  |-- @types/        # TypeScript custom type definitions
+  |-- assets/        # Static assets such as images
+  |-- components/    # Reusable UI components
+  |-- lib/           # External libraries and configurations (e.g., API, Auth)
+  |-- pages/         # Application routes and page components
+  |-- styles/        # Global and component-specific styles
+  |-- utils/         # Utility functions and helpers
+
 ```
