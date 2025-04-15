@@ -39,7 +39,7 @@ export default function UpdateProfile() {
 
   const handleUpdateProfile = async (data: UpdateProfileData) => {
     await api.put('/users/profile', {
-      bio: data?.bio,
+      bio: data.bio,
     })
 
     await router.push(`/schedule/${session.data?.user.username}`)
@@ -88,25 +88,15 @@ export default function UpdateProfile() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  try {
-    const session = await getServerSession(
-      req,
-      res,
-      buildNextAuthOptions(req, res),
-    )
+  const session = await getServerSession(
+    req,
+    res,
+    buildNextAuthOptions(req, res),
+  )
 
-    return {
-      props: {
-        session,
-      },
-    }
-  } catch (error) {
-    console.error('Erro no getServerSideProps:', error)
-
-    return {
-      props: {
-        session: null,
-      },
-    }
+  return {
+    props: {
+      session,
+    },
   }
 }
